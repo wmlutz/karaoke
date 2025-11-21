@@ -30,7 +30,7 @@ export default function Home() {
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 leading-tight"
             style={{ fontFamily: "var(--font-montserrat)" }}
           >
-            Morristown, <NJ></NJ> Pop-Up Karaoke Lounge
+            Morristown, NJ Pop-Up Karaoke Lounge
           </h1>
           <p
             className="text-xl sm:text-2xl text-purple-100 mb-2"
