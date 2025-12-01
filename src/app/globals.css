@@ -1,8 +1,106 @@
 @import "tailwindcss";
 
 :root {
+  /* Color Palette - Forefathers Karaoke Theme */
+  --color-navy: #20394D;
+  --color-cream: #FDF9E3;
+  --color-burgundy: #8C3A39;
+  --color-charcoal: #232323;
+  --color-forest: #04724D;
+
+  /* Background colors */
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Section Spacing */
+  --section-padding-y: 8rem;      /* 128px - vertical padding for sections */
+  --section-padding-y-sm: 5rem;   /* 80px - smaller vertical padding */
+  --section-padding-x: 2rem;      /* 32px - horizontal padding */
+  --section-gap: 6rem;            /* 96px - gap between major sections */
+  --section-gap-sm: 3rem;         /* 48px - smaller gap */
+
+  /* Content Width */
+  --content-max-width: 80rem;     /* 1280px - max width for content */
+  --content-narrow: 50rem;        /* 896px - narrower content width */
+  --page-max-width: 60rem;        /* 1440px - max width for entire page with gutters */
+
+  /* Component Spacing */
+  --card-padding: 3rem;           /* 48px - padding inside cards */
+  --card-gap: 2rem;               /* 32px - gap between cards */
+
+  /* Border Radius */
+  --radius-sm: 0.5rem;            /* 8px */
+  --radius-md: 1rem;              /* 16px */
+  --radius-lg: 1.5rem;            /* 24px */
+  --radius-xl: 2rem;              /* 32px */
+
+  /* Section Margin Bottom (for spacing between sections) */
+  --section-mb: 10rem;             /* 96px - standard margin bottom for sections */
+  --section-mb-sm: 3rem;          /* 48px - smaller margin bottom */
+  --section-mb-lg: 10rem;         /* 160px - larger margin bottom */
+}
+
+/* Utility Classes for Common Section Patterns */
+.section-standard {
+  padding: var(--section-padding-y) var(--section-padding-x);
+}
+
+.section-compact {
+  padding: var(--section-padding-y-sm) var(--section-padding-x);
+}
+
+.section-mb {
+  margin-bottom: var(--section-mb);
+}
+
+.section-mb-sm {
+  margin-bottom: var(--section-mb-sm);
+}
+
+.section-mb-lg {
+  margin-bottom: var(--section-mb-lg);
+}
+
+/* Full-width section with minimal horizontal padding */
+.section-full-width {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.content-container {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--section-padding-x);
+  padding-right: var(--section-padding-x);
+}
+
+.content-narrow {
+  max-width: var(--content-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--section-padding-x);
+  padding-right: var(--section-padding-x);
+}
+
+.page-container {
+  max-width: var(--page-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem var(--section-padding-x) var(--section-padding-y) 2rem;
+}
+
+.card {
+  padding: var(--card-padding);
+  border-radius: var(--radius-xl);
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.card-compact {
+  padding: calc(var(--card-padding) * 0.75);
+  border-radius: var(--radius-lg);
 }
 
 @theme inline {
