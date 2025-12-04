@@ -41,9 +41,9 @@ export default function ContactPage() {
           <div className="content-container">
             <div className="space-y-8">
               {/* Contact Form */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg">
                 <h2
-                  className="text-3xl font-bold mb-6"
+                  className="text-2xl md:text-3xl font-bold mb-6"
                   style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
                 >
                   Send Us a Message
@@ -163,7 +163,7 @@ export default function ContactPage() {
 
                     <button
                       type="submit"
-                      className="w-full px-8 py-4 rounded-lg font-bold transition-all hover:scale-105 shadow-lg text-lg"
+                      className="w-full px-8 py-3.5 rounded-lg font-bold transition-all hover:scale-105 shadow-lg text-base md:text-lg"
                       style={{
                         fontFamily: "var(--font-montserrat)",
                         backgroundColor: "#8C3A39",
@@ -175,22 +175,22 @@ export default function ContactPage() {
                   </form>
                 ) : (
                   <div
-                    className="text-center py-12"
+                    className="text-center py-8 sm:py-12"
                     style={{ fontFamily: "var(--font-raleway)" }}
                   >
                     <div
-                      className="text-6xl mb-4"
+                      className="text-4xl sm:text-5xl md:text-6xl mb-4"
                       style={{ color: "#04724D" }}
                     >
                       ✓
                     </div>
                     <h3
-                      className="text-2xl font-bold mb-2"
+                      className="text-xl md:text-2xl font-bold mb-2"
                       style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
                     >
                       Thank You!
                     </h3>
-                    <p className="text-gray-700 text-lg">
+                    <p className="text-gray-700 text-base md:text-lg">
                       We've received your message and will get back to you soon.
                     </p>
                   </div>
@@ -198,14 +198,14 @@ export default function ContactPage() {
               </div>
 
               {/* Contact Info */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg">
                 <h2
-                  className="text-3xl font-bold mb-6"
+                  className="text-2xl md:text-3xl font-bold mb-6"
                   style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
                 >
                   Get In Touch
                 </h2>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" style={{ fontFamily: "var(--font-raleway)" }}>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6" style={{ fontFamily: "var(--font-raleway)" }}>
                   <div>
                     <h3
                       className="font-bold text-lg mb-2"
@@ -266,19 +266,19 @@ export default function ContactPage() {
               </div>
 
               {/* Social Media */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg">
                 <h2
-                  className="text-2xl font-bold mb-4 text-center"
+                  className="text-xl md:text-2xl font-bold mb-4 text-center"
                   style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
                 >
                   Follow Us
                 </h2>
-                <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
                   {["Instagram", "Facebook", "TikTok"].map((platform) => (
                     <a
                       key={platform}
                       href="#"
-                      className="px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-md"
+                      className="px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-md min-h-12 flex items-center"
                       style={{
                         fontFamily: "var(--font-raleway)",
                         backgroundColor: "#20394D",

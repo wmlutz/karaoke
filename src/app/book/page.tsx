@@ -80,11 +80,11 @@ export default function BookPage() {
               <>
                 {/* Progress Steps */}
                 <div className="mb-8">
-                  <div className="flex justify-center items-center space-x-4">
+                  <div className="flex justify-center items-center space-x-2 sm:space-x-4">
                     {[1, 2, 3].map((num) => (
                       <div key={num} className="flex items-center">
                         <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center font-bold transition-all ${
+                          className={`w-12 h-12 rounded-full flex items-center justify-center font-bold transition-all ${
                             step >= num ? "scale-110" : ""
                           }`}
                           style={{
@@ -98,7 +98,7 @@ export default function BookPage() {
                         </div>
                         {num < 3 && (
                           <div
-                            className="w-16 h-1 mx-2"
+                            className="w-12 sm:w-16 h-1 mx-2"
                             style={{
                               backgroundColor:
                                 step > num ? "#8C3A39" : "#D1D5DB",
@@ -108,7 +108,7 @@ export default function BookPage() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex justify-center mt-4 space-x-8">
+                  <div className="flex justify-center mt-4 space-x-4 sm:space-x-8">
                     <span
                       className="text-sm font-semibold"
                       style={{
@@ -139,13 +139,13 @@ export default function BookPage() {
                   </div>
                 </div>
 
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg">
                   <form onSubmit={handleSubmit}>
                     {/* Step 1: Select Room */}
                     {step === 1 && (
                       <div>
                         <h2
-                          className="text-3xl font-bold mb-6"
+                          className="text-2xl md:text-3xl font-bold mb-6"
                           style={{
                             fontFamily: "var(--font-montserrat)",
                             color: "#20394D",
@@ -153,11 +153,11 @@ export default function BookPage() {
                         >
                           Choose Your Room
                         </h2>
-                        <div className="grid sm:grid-cols-2 gap-4 mb-6">
+                        <div className="grid md:grid-cols-2 gap-3 sm:gap-4 mb-6">
                           {rooms.map((room) => (
                             <div
                               key={room.id}
-                              className={`p-6 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg ${
+                              className={`p-4 md:p-6 rounded-xl border-2 cursor-pointer transition-all hover:shadow-lg ${
                                 bookingData.room === room.id ? "ring-4" : ""
                               }`}
                               style={{
@@ -165,7 +165,6 @@ export default function BookPage() {
                                   bookingData.room === room.id
                                     ? "#8C3A39"
                                     : "#D1D5DB",
-                                ringColor: "#8C3A39",
                                 backgroundColor:
                                   bookingData.room === room.id
                                     ? "#FDF9E3"
@@ -189,7 +188,7 @@ export default function BookPage() {
                                 className="w-full rounded-lg mb-4"
                               />
                               <h3
-                                className="text-xl font-bold mb-2"
+                                className="text-lg md:text-xl font-bold mb-2"
                                 style={{
                                   fontFamily: "var(--font-montserrat)",
                                   color: "#20394D",
@@ -238,7 +237,7 @@ export default function BookPage() {
                     {step === 2 && (
                       <div>
                         <h2
-                          className="text-3xl font-bold mb-6"
+                          className="text-2xl md:text-3xl font-bold mb-6"
                           style={{
                             fontFamily: "var(--font-montserrat)",
                             color: "#20394D",
@@ -337,11 +336,11 @@ export default function BookPage() {
                             </select>
                           </div>
                         </div>
-                        <div className="flex gap-4">
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                           <button
                             type="button"
                             onClick={prevStep}
-                            className="flex-1 px-8 py-4 rounded-lg font-bold transition-all hover:scale-105 shadow-lg"
+                            className="flex-1 px-8 py-3.5 rounded-lg font-bold text-base md:text-lg transition-all hover:scale-105 shadow-lg"
                             style={{
                               fontFamily: "var(--font-montserrat)",
                               backgroundColor: "#D1D5DB",
@@ -358,7 +357,7 @@ export default function BookPage() {
                               !bookingData.time ||
                               !bookingData.duration
                             }
-                            className="flex-1 px-8 py-4 rounded-lg font-bold transition-all hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="flex-1 px-8 py-3.5 rounded-lg font-bold text-base md:text-lg transition-all hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                             style={{
                               fontFamily: "var(--font-montserrat)",
                               backgroundColor: "#8C3A39",
@@ -375,7 +374,7 @@ export default function BookPage() {
                     {step === 3 && (
                       <div>
                         <h2
-                          className="text-3xl font-bold mb-6"
+                          className="text-2xl md:text-3xl font-bold mb-6"
                           style={{
                             fontFamily: "var(--font-montserrat)",
                             color: "#20394D",
@@ -501,11 +500,11 @@ export default function BookPage() {
                             process payment and finalize your reservation.
                           </p>
                         </div>
-                        <div className="flex gap-4">
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                           <button
                             type="button"
                             onClick={prevStep}
-                            className="flex-1 px-8 py-4 rounded-lg font-bold transition-all hover:scale-105 shadow-lg"
+                            className="flex-1 px-8 py-3.5 rounded-lg font-bold text-base md:text-lg transition-all hover:scale-105 shadow-lg"
                             style={{
                               fontFamily: "var(--font-montserrat)",
                               backgroundColor: "#D1D5DB",
@@ -516,7 +515,7 @@ export default function BookPage() {
                           </button>
                           <button
                             type="submit"
-                            className="flex-1 px-8 py-4 rounded-lg font-bold transition-all hover:scale-105 shadow-lg"
+                            className="flex-1 px-8 py-3.5 rounded-lg font-bold text-base md:text-lg transition-all hover:scale-105 shadow-lg"
                             style={{
                               fontFamily: "var(--font-montserrat)",
                               backgroundColor: "#04724D",
@@ -532,12 +531,12 @@ export default function BookPage() {
                 </div>
               </>
             ) : (
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-12 shadow-lg text-center">
-                <div className="text-6xl mb-6" style={{ color: "#04724D" }}>
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-12 shadow-lg text-center">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-6" style={{ color: "#04724D" }}>
                   ✓
                 </div>
                 <h2
-                  className="text-4xl font-bold mb-4"
+                  className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
                   style={{
                     fontFamily: "var(--font-montserrat)",
                     color: "#20394D",
@@ -546,7 +545,7 @@ export default function BookPage() {
                   Booking Request Received!
                 </h2>
                 <p
-                  className="text-xl mb-6"
+                  className="text-lg md:text-xl mb-6"
                   style={{
                     fontFamily: "var(--font-raleway)",
                     color: "#232323",
@@ -556,7 +555,7 @@ export default function BookPage() {
                   24 hours to confirm your reservation and process the deposit.
                 </p>
                 <div
-                  className="p-6 rounded-xl mb-6"
+                  className="p-4 sm:p-6 rounded-xl mb-6"
                   style={{ backgroundColor: "#FDF9E3" }}
                 >
                   <h3

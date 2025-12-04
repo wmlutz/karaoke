@@ -68,7 +68,7 @@ export default function PricesPage() {
         <main className="page-container">
           {/* Pricing Cards */}
           <div className="section-full-width">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 section-mb">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 section-mb">
               {rooms.map((room, index) => (
                 <div
                   key={index}
@@ -84,12 +84,13 @@ export default function PricesPage() {
                   <div
                     style={{
                       width: "100%",
-                      height: "200px",
+                      height: "160px",
                       backgroundColor: "var(--color-navy)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                     }}
+                    className="sm:h-[200px]"
                   >
                     <span
                       style={{
@@ -103,9 +104,9 @@ export default function PricesPage() {
                     </span>
                   </div>
 
-                  <div style={{ padding: "2rem" }}>
+                  <div className="p-4 sm:p-6 md:p-8">
                     <h3
-                      className="text-2xl font-bold mb-2"
+                      className="text-xl md:text-2xl font-bold mb-2"
                       style={{
                         fontFamily: "var(--font-montserrat)",
                         color: "var(--color-navy)",
@@ -114,7 +115,7 @@ export default function PricesPage() {
                       {room.name}
                     </h3>
                     <p
-                      className="text-lg mb-4"
+                      className="text-base md:text-lg mb-4"
                       style={{
                         fontFamily: "var(--font-raleway)",
                         color: "var(--color-forest)",
@@ -131,7 +132,7 @@ export default function PricesPage() {
                           Weekdays (Mon-Thu)
                         </span>
                         <div
-                          className="text-3xl font-bold"
+                          className="text-2xl md:text-3xl font-bold"
                           style={{
                             fontFamily: "var(--font-montserrat)",
                             color: "var(--color-burgundy)",
@@ -148,7 +149,7 @@ export default function PricesPage() {
                           Weekends (Fri-Sun)
                         </span>
                         <div
-                          className="text-3xl font-bold"
+                          className="text-2xl md:text-3xl font-bold"
                           style={{
                             fontFamily: "var(--font-montserrat)",
                             color: "var(--color-burgundy)",
@@ -185,7 +186,7 @@ export default function PricesPage() {
           <div className="content-container">
             <div className="">
               <h2
-                className="text-3xl font-bold mb-6 text-center"
+                className="text-2xl md:text-3xl font-bold mb-6 text-center"
                 style={{
                   fontFamily: "var(--font-montserrat)",
                   color: "var(--color-navy)",
@@ -194,7 +195,7 @@ export default function PricesPage() {
                 Booking Information
               </h2>
               <div
-                className="grid sm:grid-cols-2 gap-6 text-lg"
+                className="grid sm:grid-cols-2 gap-4 md:gap-6 text-base md:text-lg"
                 style={{
                   fontFamily: "var(--font-raleway)",
                   color: "var(--color-charcoal)",

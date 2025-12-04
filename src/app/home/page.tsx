@@ -25,7 +25,7 @@ export default function HomePage() {
                   priority
                 />
                 <h1
-                  className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6"
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6"
                   style={{
                     fontFamily: "var(--font-montserrat)",
                     color: "var(--color-charcoal)",
@@ -34,7 +34,7 @@ export default function HomePage() {
                   Forefathers Karaoke
                 </h1>
                 <p
-                  className="text-xl sm:text-2xl mb-8 max-w-2xl"
+                  className="text-lg sm:text-xl md:text-2xl mb-8 max-w-2xl"
                   style={{
                     fontFamily: "var(--font-raleway)",
                     color: "var(--color-charcoal)",
@@ -72,10 +72,10 @@ export default function HomePage() {
           </div>
 
           {/* What is Private Box Karaoke Section */}
-          <section className="section-mb bg-white/60 backdrop-blur-sm rounded-3xl p-12">
+          <section className="section-mb bg-white/60 backdrop-blur-sm rounded-3xl p-6 sm:p-8 md:p-12">
             <div className="content-container">
               <h2
-                className="text-4xl sm:text-5xl font-bold mb-8 text-center"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center"
                 style={{
                   fontFamily: "var(--font-montserrat)",
                   color: "var(--color-navy)",
@@ -84,7 +84,7 @@ export default function HomePage() {
                 What is Private Box Karaoke?
               </h2>
               <div
-                className="text-lg sm:text-xl space-y-6"
+                className="text-base sm:text-lg md:text-xl space-y-6"
                 style={{
                   fontFamily: "var(--font-raleway)",
                   color: "var(--color-charcoal)",
@@ -101,18 +101,17 @@ export default function HomePage() {
                   extensive song libraries, and comfortable seating. Sing your
                   heart out without judgment—just pure fun with your crew.
                 </p>
-                <div className="grid sm:grid-cols-2 gap-6 mt-8">
+                <div className="grid sm:grid-cols-2 gap-4 md:gap-6 mt-8">
                   <div
-                    className="border-2"
+                    className="border-2 p-4 sm:p-6 md:p-8"
                     style={{
                       backgroundColor: "#FEF3C7",
-                      padding: "var(--card-padding)",
                       borderRadius: "var(--radius-lg)",
                       borderColor: "#F59E0B",
                     }}
                   >
                     <h3
-                      className="text-2xl font-bold mb-3"
+                      className="text-xl md:text-2xl font-bold mb-3"
                       style={{
                         fontFamily: "var(--font-montserrat)",
                         color: "var(--color-charcoal)",
@@ -120,22 +119,21 @@ export default function HomePage() {
                     >
                       BYOB
                     </h3>
-                    <p style={{ color: "var(--color-charcoal)" }}>
+                    <p className="text-sm md:text-base" style={{ color: "var(--color-charcoal)" }}>
                       Bring Your Own Beverage—enjoy your favorite drinks while
                       you sing!
                     </p>
                   </div>
                   <div
-                    className="border-2"
+                    className="border-2 p-4 sm:p-6 md:p-8"
                     style={{
                       backgroundColor: "#FEE2E2",
-                      padding: "var(--card-padding)",
                       borderRadius: "var(--radius-lg)",
                       borderColor: "#EF4444",
                     }}
                   >
                     <h3
-                      className="text-2xl font-bold mb-3"
+                      className="text-xl md:text-2xl font-bold mb-3"
                       style={{
                         fontFamily: "var(--font-montserrat)",
                         color: "var(--color-charcoal)",
@@ -143,7 +141,7 @@ export default function HomePage() {
                     >
                       BYOF
                     </h3>
-                    <p style={{ color: "var(--color-charcoal)" }}>
+                    <p className="text-sm md:text-base" style={{ color: "var(--color-charcoal)" }}>
                       Bring Your Own Food—make it a full party with your
                       favorite snacks and meals!
                     </p>
@@ -157,7 +155,7 @@ export default function HomePage() {
           <section className="section-mb">
             <div className="content-container">
               <h2
-                className="text-4xl sm:text-5xl font-bold mb-8 text-center"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 text-center"
                 style={{
                   fontFamily: "var(--font-montserrat)",
                   color: "var(--color-navy)",
@@ -166,7 +164,7 @@ export default function HomePage() {
                 Recent Posts
               </h2>
               <p
-                className="text-center mb-8"
+                className="text-base md:text-lg text-center mb-8"
                 style={{
                   fontFamily: "var(--font-raleway)",
                   color: "var(--color-charcoal)",

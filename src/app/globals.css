@@ -12,21 +12,21 @@
   --background: #ffffff;
   --foreground: #171717;
 
-  /* Section Spacing */
-  --section-padding-y: 8rem;      /* 128px - vertical padding for sections */
-  --section-padding-y-sm: 5rem;   /* 80px - smaller vertical padding */
-  --section-padding-x: 2rem;      /* 32px - horizontal padding */
-  --section-gap: 6rem;            /* 96px - gap between major sections */
-  --section-gap-sm: 3rem;         /* 48px - smaller gap */
+  /* Section Spacing - Mobile First */
+  --section-padding-y: 3rem;      /* 48px - vertical padding for sections on mobile */
+  --section-padding-y-sm: 2.5rem; /* 40px - smaller vertical padding on mobile */
+  --section-padding-x: 1rem;      /* 16px - horizontal padding on mobile */
+  --section-gap: 3rem;            /* 48px - gap between major sections on mobile */
+  --section-gap-sm: 2rem;         /* 32px - smaller gap on mobile */
 
   /* Content Width */
   --content-max-width: 80rem;     /* 1280px - max width for content */
   --content-narrow: 50rem;        /* 896px - narrower content width */
   --page-max-width: 60rem;        /* 1440px - max width for entire page with gutters */
 
-  /* Component Spacing */
-  --card-padding: 3rem;           /* 48px - padding inside cards */
-  --card-gap: 2rem;               /* 32px - gap between cards */
+  /* Component Spacing - Mobile First */
+  --card-padding: 1.5rem;         /* 24px - padding inside cards on mobile */
+  --card-gap: 1rem;               /* 16px - gap between cards on mobile */
 
   /* Border Radius */
   --radius-sm: 0.5rem;            /* 8px */
@@ -34,10 +34,41 @@
   --radius-lg: 1.5rem;            /* 24px */
   --radius-xl: 2rem;              /* 32px */
 
-  /* Section Margin Bottom (for spacing between sections) */
-  --section-mb: 10rem;             /* 96px - standard margin bottom for sections */
-  --section-mb-sm: 3rem;          /* 48px - smaller margin bottom */
-  --section-mb-lg: 10rem;         /* 160px - larger margin bottom */
+  /* Section Margin Bottom (for spacing between sections) - Mobile First */
+  --section-mb: 4rem;             /* 64px - standard margin bottom for sections on mobile */
+  --section-mb-sm: 2rem;          /* 32px - smaller margin bottom on mobile */
+  --section-mb-lg: 6rem;          /* 96px - larger margin bottom on mobile */
+}
+
+/* Tablet spacing adjustments */
+@media (min-width: 768px) {
+  :root {
+    --section-padding-y: 6rem;      /* 96px */
+    --section-padding-y-sm: 4rem;   /* 64px */
+    --section-padding-x: 2rem;      /* 32px */
+    --section-gap: 4.5rem;          /* 72px */
+    --section-gap-sm: 2.5rem;       /* 40px */
+    --card-padding: 2rem;           /* 32px */
+    --card-gap: 1.5rem;             /* 24px */
+    --section-mb: 6rem;             /* 96px */
+    --section-mb-sm: 2.5rem;        /* 40px */
+    --section-mb-lg: 8rem;          /* 128px */
+  }
+}
+
+/* Desktop spacing adjustments */
+@media (min-width: 1024px) {
+  :root {
+    --section-padding-y: 8rem;      /* 128px */
+    --section-padding-y-sm: 5rem;   /* 80px */
+    --section-gap: 6rem;            /* 96px */
+    --section-gap-sm: 3rem;         /* 48px */
+    --card-padding: 3rem;           /* 48px */
+    --card-gap: 2rem;               /* 32px */
+    --section-mb: 10rem;            /* 160px */
+    --section-mb-sm: 3rem;          /* 48px */
+    --section-mb-lg: 10rem;         /* 160px */
+  }
 }
 
 /* Utility Classes for Common Section Patterns */

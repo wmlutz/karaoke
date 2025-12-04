@@ -32,7 +32,7 @@ export default function Home() {
               className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 leading-tight"
               style={{ fontFamily: "var(--font-montserrat)" }}
             >
-              Morristown's
+              Morristown's First
               <br />
               Pop-Up Karaoke Lounge
             </h1>

@@ -17,7 +17,7 @@ export default function AboutPage() {
             {/* Story Section */}
             <section className="section-mb">
               <h2
-                className="text-4xl font-bold mb-8"
+                className="text-3xl md:text-4xl font-bold mb-8"
                 style={{
                   fontFamily: "var(--font-montserrat)",
                   color: "var(--color-burgundy)",
@@ -26,7 +26,7 @@ export default function AboutPage() {
                 Our Story
               </h2>
 
-              <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
                 {/* Team Photo */}
                 <div className="rounded-xl overflow-hidden">
                   <Image
@@ -40,7 +40,7 @@ export default function AboutPage() {
 
                 {/* Story Text */}
                 <div
-                  className="text-lg text-gray-700 space-y-4"
+                  className="text-base md:text-lg text-gray-700 space-y-4"
                   style={{ fontFamily: "var(--font-raleway)" }}
                 >
                   <p>
@@ -67,7 +67,7 @@ export default function AboutPage() {
             {/* Rooms Section */}
             <section className="section-mb">
               <h2
-                className="text-4xl font-bold mb-8 text-center"
+                className="text-3xl md:text-4xl font-bold mb-8 text-center"
                 style={{
                   fontFamily: "var(--font-montserrat)",
                   color: "var(--color-navy)",
@@ -75,7 +75,7 @@ export default function AboutPage() {
               >
                 Our Revolutionary Rooms
               </h2>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
                 {[
                   {
                     name: "The Washington",
@@ -114,9 +114,9 @@ export default function AboutPage() {
                       height={400}
                       className="w-full"
                     />
-                    <div style={{ padding: "var(--card-padding)" }}>
+                    <div className="p-4 sm:p-6 md:p-8">
                       <h3
-                        className="text-2xl font-bold mb-2"
+                        className="text-xl md:text-2xl font-bold mb-2"
                         style={{
                           fontFamily: "var(--font-montserrat)",
                           color: "var(--color-burgundy)",
@@ -125,7 +125,7 @@ export default function AboutPage() {
                         {room.name}
                       </h3>
                       <p
-                        className="text-lg mb-2"
+                        className="text-base md:text-lg mb-2"
                         style={{
                           fontFamily: "var(--font-raleway)",
                           color: "var(--color-forest)",
@@ -148,9 +148,9 @@ export default function AboutPage() {
         </main>
 
         {/* Values Section */}
-        <section className="section-mb">
+        <section className="section-mb px-4 sm:px-6">
           <h2
-            className="text-4xl font-bold mb-8 text-center"
+            className="text-3xl md:text-4xl font-bold mb-8 text-center"
             style={{
               fontFamily: "var(--font-montserrat)",
               color: "var(--color-navy)",
@@ -158,7 +158,7 @@ export default function AboutPage() {
           >
             Forefathers Karaoke is All About
           </h2>
-          <div className="grid sm:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
             {[
               {
                 title: "Life",
@@ -178,7 +178,7 @@ export default function AboutPage() {
             ].map((value, index) => (
               <div key={index} className="text-center">
                 <h3
-                  className="text-2xl font-bold mb-3"
+                  className="text-xl md:text-2xl font-bold mb-3"
                   style={{
                     fontFamily: "var(--font-montserrat)",
                     color: "var(--color-navy)",
@@ -187,7 +187,7 @@ export default function AboutPage() {
                   {value.title}
                 </h3>
                 <p
-                  className="text-gray-700"
+                  className="text-sm md:text-base text-gray-700"
                   style={{ fontFamily: "var(--font-raleway)" }}
                 >
                   {value.description}
