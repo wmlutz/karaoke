@@ -79,7 +79,6 @@ export default function PoliciesPage() {
       >
         <main className="page-container">
           <div className="content-container">
-
             {/* Alert Box */}
             <div
               className="mb-8 p-6 rounded-xl border-l-4"
@@ -92,7 +91,10 @@ export default function PoliciesPage() {
                 className="text-lg"
                 style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
               >
-                <strong style={{ color: "#8C3A39" }}>Important:</strong> By booking a room at Forefathers Karaoke, you agree to abide by all policies listed below. These policies are in place to ensure a safe, enjoyable experience for all guests.
+                <strong style={{ color: "#8C3A39" }}>Important:</strong> By
+                booking a room at Forefathers Karaoke, you agree to abide by all
+                policies listed below. These policies are in place to ensure a
+                safe, enjoyable experience for all guests.
               </p>
             </div>
 
@@ -103,7 +105,10 @@ export default function PoliciesPage() {
                   <div className="py-8">
                     <h2
                       className="text-3xl font-bold mb-6"
-                      style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                      style={{
+                        fontFamily: "var(--font-montserrat)",
+                        color: "#20394D",
+                      }}
                     >
                       {policy.title}
                     </h2>
@@ -115,7 +120,7 @@ export default function PoliciesPage() {
                           style={{ fontFamily: "var(--font-raleway)" }}
                         >
                           <span
-                            className="mr-3 mt-1 flex-shrink-0"
+                            className="mr-3 mt-1 shrink-0"
                             style={{ color: "#04724D", fontSize: "1.25rem" }}
                           >
                             •

@@ -60,7 +60,7 @@ export default function PasswordProtection({
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-purple-900 via-purple-800 to-pink-800 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-purple-900 via-purple-800 to-pink-800 px-4">
       <div className="w-full max-w-md">
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-8">
           <h2

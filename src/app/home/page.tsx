@@ -8,7 +8,7 @@ import Nav from "@/components/Nav";
 export default function HomePage() {
   return (
     <PasswordProtection pageName="home-page">
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+      <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-gray-100">
         <Nav />
 
         <main className="page-container">
@@ -119,7 +119,10 @@ export default function HomePage() {
                     >
                       BYOB
                     </h3>
-                    <p className="text-sm md:text-base" style={{ color: "var(--color-charcoal)" }}>
+                    <p
+                      className="text-sm md:text-base"
+                      style={{ color: "var(--color-charcoal)" }}
+                    >
                       Bring Your Own Beverage—enjoy your favorite drinks while
                       you sing!
                     </p>
@@ -141,7 +144,10 @@ export default function HomePage() {
                     >
                       BYOF
                     </h3>
-                    <p className="text-sm md:text-base" style={{ color: "var(--color-charcoal)" }}>
+                    <p
+                      className="text-sm md:text-base"
+                      style={{ color: "var(--color-charcoal)" }}
+                    >
                       Bring Your Own Food—make it a full party with your
                       favorite snacks and meals!
                     </p>

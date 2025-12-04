@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <PasswordProtection pageName="home">
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-purple-200 via-purple-300 to-blue-200 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-purple-200 via-purple-300 to-blue-200 px-4">
         <main className="flex flex-col items-center justify-center text-center max-w-2xl">
           <div className="mb-8">
             <h1
