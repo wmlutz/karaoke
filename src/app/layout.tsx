@@ -13,8 +13,29 @@ const raleway = Raleway({
 });
 
 export const metadata: Metadata = {
-  title: "Morristown Pop-Up Karaoke Lounge",
-  description: "Join the VIP reservation list for Morristown's exclusive pop-up karaoke lounge. 2-3 private rooms, limited time only.",
+  title: "Forefathers Karaoke | Private Karaoke Rooms in Morristown, NJ",
+  description: "Private karaoke rooms in Morristown, NJ. BYOB & BYOF friendly. Book your revolutionary singing experience today!",
+  icons: {
+    icon: [
+      { url: "/favicon/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon/favicon.ico", sizes: "any" },
+    ],
+    apple: [
+      { url: "/favicon/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "android-chrome-192x192",
+        url: "/favicon/android-chrome-192x192.png",
+      },
+      {
+        rel: "android-chrome-512x512",
+        url: "/favicon/android-chrome-512x512.png",
+      },
+    ],
+  },
+  manifest: "/favicon/site.webmanifest",
 };
 
 export default function RootLayout({

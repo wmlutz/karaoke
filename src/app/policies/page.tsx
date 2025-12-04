@@ -97,35 +97,42 @@ export default function PoliciesPage() {
             </div>
 
             {/* Policies List */}
-            <div className="space-y-8">
+            <div>
               {policies.map((policy, index) => (
-                <div
-                  key={index}
-                  className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg"
-                >
-                  <h2
-                    className="text-3xl font-bold mb-6"
-                    style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
-                  >
-                    {policy.title}
-                  </h2>
-                  <ul className="space-y-3">
-                    {policy.rules.map((rule, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start"
-                        style={{ fontFamily: "var(--font-raleway)" }}
-                      >
-                        <span
-                          className="mr-3 mt-1 flex-shrink-0"
-                          style={{ color: "#04724D", fontSize: "1.25rem" }}
+                <div key={index}>
+                  <div className="py-8">
+                    <h2
+                      className="text-3xl font-bold mb-6"
+                      style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                    >
+                      {policy.title}
+                    </h2>
+                    <ul className="space-y-3">
+                      {policy.rules.map((rule, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start"
+                          style={{ fontFamily: "var(--font-raleway)" }}
                         >
-                          •
-                        </span>
-                        <span className="text-gray-700 text-lg">{rule}</span>
-                      </li>
-                    ))}
-                  </ul>
+                          <span
+                            className="mr-3 mt-1 flex-shrink-0"
+                            style={{ color: "#04724D", fontSize: "1.25rem" }}
+                          >
+                            •
+                          </span>
+                          <span className="text-gray-700 text-lg">{rule}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  {index < policies.length - 1 && (
+                    <hr
+                      style={{
+                        borderTop: "1px solid var(--color-navy)",
+                        opacity: 0.2,
+                      }}
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -149,7 +156,7 @@ export default function PoliciesPage() {
             </div>
           </div>
         </main>
-      </div>
+      </PageContainer>
     </PasswordProtection>
   );
 }

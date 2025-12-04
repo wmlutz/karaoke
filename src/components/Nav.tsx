@@ -19,7 +19,7 @@ export default function Nav() {
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b"
       style={{
         backgroundColor: "rgba(32, 57, 77, 0.95)",
-        borderBottomColor: "var(--color-forest)",
+        borderBottomColor: "rgba(32, 57, 77, 0.95)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,7 +30,7 @@ export default function Nav() {
             className="text-xl font-bold hover:opacity-80 transition-opacity"
             style={{
               fontFamily: "var(--font-montserrat)",
-              color: "var(--color-cream)",
+              color: "#ffffff",
             }}
           >
             Forefathers Karaoke
@@ -45,7 +45,7 @@ export default function Nav() {
                 className="hover:opacity-70 transition-opacity"
                 style={{
                   fontFamily: "var(--font-raleway)",
-                  color: "var(--color-cream)",
+                  color: "#ffffff",
                   fontSize: "1rem",
                 }}
               >
@@ -57,7 +57,7 @@ export default function Nav() {
               className="px-6 py-2 font-semibold transition-all hover:scale-105 shadow-lg"
               style={{
                 fontFamily: "var(--font-montserrat)",
-                backgroundColor: "var(--color-cream)",
+                backgroundColor: "#ffffff",
                 color: "var(--color-navy)",
                 borderRadius: "var(--radius-md)",
               }}
@@ -75,15 +75,15 @@ export default function Nav() {
             <div className="w-6 h-5 flex flex-col justify-between">
               <span
                 className="w-full h-0.5 transition-all"
-                style={{ backgroundColor: "var(--color-cream)" }}
+                style={{ backgroundColor: "#ffffff" }}
               ></span>
               <span
                 className="w-full h-0.5 transition-all"
-                style={{ backgroundColor: "var(--color-cream)" }}
+                style={{ backgroundColor: "#ffffff" }}
               ></span>
               <span
                 className="w-full h-0.5 transition-all"
-                style={{ backgroundColor: "var(--color-cream)" }}
+                style={{ backgroundColor: "#ffffff" }}
               ></span>
             </div>
           </button>
@@ -93,7 +93,7 @@ export default function Nav() {
         {isMobileMenuOpen && (
           <div
             className="md:hidden py-4 border-t"
-            style={{ borderTopColor: "var(--color-forest)" }}
+            style={{ borderTopColor: "rgba(255, 255, 255, 0.2)" }}
           >
             <div className="flex flex-col space-y-3">
               {navLinks.map((link) => (
@@ -103,7 +103,7 @@ export default function Nav() {
                   className="px-4 py-2 hover:opacity-70 transition-opacity"
                   style={{
                     fontFamily: "var(--font-raleway)",
-                    color: "var(--color-cream)",
+                    color: "#ffffff",
                   }}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
@@ -115,7 +115,7 @@ export default function Nav() {
                 className="mx-4 px-6 py-3 font-semibold text-center transition-all hover:scale-105 shadow-lg"
                 style={{
                   fontFamily: "var(--font-montserrat)",
-                  backgroundColor: "var(--color-cream)",
+                  backgroundColor: "#ffffff",
                   color: "var(--color-navy)",
                   borderRadius: "var(--radius-md)",
                 }}

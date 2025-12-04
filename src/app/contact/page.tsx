@@ -39,104 +39,7 @@ export default function ContactPage() {
       >
         <main className="page-container">
           <div className="content-container">
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Contact Info */}
-              <div>
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg mb-6">
-                  <h2
-                    className="text-3xl font-bold mb-6"
-                    style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
-                  >
-                    Get In Touch
-                  </h2>
-                  <div className="space-y-6" style={{ fontFamily: "var(--font-raleway)" }}>
-                    <div>
-                      <h3
-                        className="font-bold text-lg mb-2"
-                        style={{ color: "#8C3A39" }}
-                      >
-                        Address
-                      </h3>
-                      <p className="text-gray-700">
-                        123 Washington Street
-                        <br />
-                        Morristown, NJ 07960
-                      </p>
-                    </div>
-                    <div>
-                      <h3
-                        className="font-bold text-lg mb-2"
-                        style={{ color: "#8C3A39" }}
-                      >
-                        Phone
-                      </h3>
-                      <a
-                        href="tel:+19735551776"
-                        className="text-gray-700 hover:underline"
-                      >
-                        (973) 555-1776
-                      </a>
-                    </div>
-                    <div>
-                      <h3
-                        className="font-bold text-lg mb-2"
-                        style={{ color: "#8C3A39" }}
-                      >
-                        Email
-                      </h3>
-                      <a
-                        href="mailto:sing@forefatherskaraoke.com"
-                        className="text-gray-700 hover:underline"
-                      >
-                        sing@forefatherskaraoke.com
-                      </a>
-                    </div>
-                    <div>
-                      <h3
-                        className="font-bold text-lg mb-2"
-                        style={{ color: "#8C3A39" }}
-                      >
-                        Hours
-                      </h3>
-                      <p className="text-gray-700">
-                        Monday - Thursday: 5:00 PM - 12:00 AM
-                        <br />
-                        Friday - Saturday: 3:00 PM - 2:00 AM
-                        <br />
-                        Sunday: 3:00 PM - 11:00 PM
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Social Media */}
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
-                  <h2
-                    className="text-2xl font-bold mb-4"
-                    style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
-                  >
-                    Follow Us
-                  </h2>
-                  <div className="flex gap-4">
-                    {["Instagram", "Facebook", "TikTok"].map((platform) => (
-                      <a
-                        key={platform}
-                        href="#"
-                        className="px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-md"
-                        style={{
-                          fontFamily: "var(--font-raleway)",
-                          backgroundColor: "#20394D",
-                          color: "#FDF9E3",
-                        }}
-                      >
-                        {platform}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
+            <div className="space-y-8">
               {/* Contact Form */}
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
                 <h2
@@ -292,6 +195,100 @@ export default function ContactPage() {
                     </p>
                   </div>
                 )}
+              </div>
+
+              {/* Contact Info */}
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <h2
+                  className="text-3xl font-bold mb-6"
+                  style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                >
+                  Get In Touch
+                </h2>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" style={{ fontFamily: "var(--font-raleway)" }}>
+                  <div>
+                    <h3
+                      className="font-bold text-lg mb-2"
+                      style={{ color: "#8C3A39" }}
+                    >
+                      Address
+                    </h3>
+                    <p className="text-gray-700">
+                      123 Washington Street
+                      <br />
+                      Morristown, NJ 07960
+                    </p>
+                  </div>
+                  <div>
+                    <h3
+                      className="font-bold text-lg mb-2"
+                      style={{ color: "#8C3A39" }}
+                    >
+                      Phone
+                    </h3>
+                    <a
+                      href="tel:+19735551776"
+                      className="text-gray-700 hover:underline"
+                    >
+                      (973) 555-1776
+                    </a>
+                  </div>
+                  <div>
+                    <h3
+                      className="font-bold text-lg mb-2"
+                      style={{ color: "#8C3A39" }}
+                    >
+                      Email
+                    </h3>
+                    <a
+                      href="mailto:sing@forefatherskaraoke.com"
+                      className="text-gray-700 hover:underline"
+                    >
+                      sing@forefatherskaraoke.com
+                    </a>
+                  </div>
+                  <div>
+                    <h3
+                      className="font-bold text-lg mb-2"
+                      style={{ color: "#8C3A39" }}
+                    >
+                      Hours
+                    </h3>
+                    <p className="text-gray-700">
+                      Monday - Thursday: 5:00 PM - 12:00 AM
+                      <br />
+                      Friday - Saturday: 3:00 PM - 2:00 AM
+                      <br />
+                      Sunday: 3:00 PM - 11:00 PM
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Social Media */}
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg">
+                <h2
+                  className="text-2xl font-bold mb-4 text-center"
+                  style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                >
+                  Follow Us
+                </h2>
+                <div className="flex flex-wrap justify-center gap-4">
+                  {["Instagram", "Facebook", "TikTok"].map((platform) => (
+                    <a
+                      key={platform}
+                      href="#"
+                      className="px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 shadow-md"
+                      style={{
+                        fontFamily: "var(--font-raleway)",
+                        backgroundColor: "#20394D",
+                        color: "#FDF9E3",
+                      }}
+                    >
+                      {platform}
+                    </a>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

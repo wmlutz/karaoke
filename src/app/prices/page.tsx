@@ -11,21 +11,36 @@ export default function PricesPage() {
       capacity: "4-6 people",
       weekdayPrice: "$40/hour",
       weekendPrice: "$50/hour",
-      features: ["Premium sound system", "10,000+ song library", "BYOB & BYOF friendly"],
+      features: [
+        "Premium sound system",
+        "10,000+ song library",
+        "BYOB & BYOF friendly",
+      ],
     },
     {
       name: "The Jefferson",
       capacity: "6-10 people",
       weekdayPrice: "$60/hour",
       weekendPrice: "$75/hour",
-      features: ["Premium sound system", "10,000+ song library", "BYOB & BYOF friendly", "Party lighting"],
+      features: [
+        "Premium sound system",
+        "10,000+ song library",
+        "BYOB & BYOF friendly",
+        "Party lighting",
+      ],
     },
     {
       name: "The Franklin",
       capacity: "10-15 people",
       weekdayPrice: "$80/hour",
       weekendPrice: "$100/hour",
-      features: ["Premium sound system", "10,000+ song library", "BYOB & BYOF friendly", "Party lighting", "Extra seating"],
+      features: [
+        "Premium sound system",
+        "10,000+ song library",
+        "BYOB & BYOF friendly",
+        "Party lighting",
+        "Extra seating",
+      ],
       popular: true,
     },
     {
@@ -33,7 +48,14 @@ export default function PricesPage() {
       capacity: "15-20 people",
       weekdayPrice: "$100/hour",
       weekendPrice: "$125/hour",
-      features: ["Premium sound system", "10,000+ song library", "BYOB & BYOF friendly", "Party lighting", "VIP seating area", "Premium sound upgrade"],
+      features: [
+        "Premium sound system",
+        "10,000+ song library",
+        "BYOB & BYOF friendly",
+        "Party lighting",
+        "VIP seating area",
+        "Premium sound upgrade",
+      ],
     },
   ];
 
@@ -84,13 +106,19 @@ export default function PricesPage() {
                   <div style={{ padding: "2rem" }}>
                     <h3
                       className="text-2xl font-bold mb-2"
-                      style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-navy)" }}
+                      style={{
+                        fontFamily: "var(--font-montserrat)",
+                        color: "var(--color-navy)",
+                      }}
                     >
                       {room.name}
                     </h3>
                     <p
                       className="text-lg mb-4"
-                      style={{ fontFamily: "var(--font-raleway)", color: "var(--color-forest)" }}
+                      style={{
+                        fontFamily: "var(--font-raleway)",
+                        color: "var(--color-forest)",
+                      }}
                     >
                       {room.capacity}
                     </p>
@@ -104,7 +132,10 @@ export default function PricesPage() {
                         </span>
                         <div
                           className="text-3xl font-bold"
-                          style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-burgundy)" }}
+                          style={{
+                            fontFamily: "var(--font-montserrat)",
+                            color: "var(--color-burgundy)",
+                          }}
                         >
                           {room.weekdayPrice}
                         </div>
@@ -118,7 +149,10 @@ export default function PricesPage() {
                         </span>
                         <div
                           className="text-3xl font-bold"
-                          style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-burgundy)" }}
+                          style={{
+                            fontFamily: "var(--font-montserrat)",
+                            color: "var(--color-burgundy)",
+                          }}
                         >
                           {room.weekendPrice}
                         </div>
@@ -131,7 +165,12 @@ export default function PricesPage() {
                           className="flex items-start"
                           style={{ fontFamily: "var(--font-raleway)" }}
                         >
-                          <span className="mr-2" style={{ color: "var(--color-forest)" }}>✓</span>
+                          <span
+                            className="mr-2"
+                            style={{ color: "var(--color-forest)" }}
+                          >
+                            ✓
+                          </span>
                           <span className="text-gray-700">{feature}</span>
                         </li>
                       ))}
@@ -144,40 +183,66 @@ export default function PricesPage() {
 
           {/* Additional Info */}
           <div className="content-container">
-            <div className="card">
+            <div className="">
               <h2
                 className="text-3xl font-bold mb-6 text-center"
-                style={{ fontFamily: "var(--font-montserrat)", color: "var(--color-navy)" }}
+                style={{
+                  fontFamily: "var(--font-montserrat)",
+                  color: "var(--color-navy)",
+                }}
               >
                 Booking Information
               </h2>
               <div
                 className="grid sm:grid-cols-2 gap-6 text-lg"
-                style={{ fontFamily: "var(--font-raleway)", color: "var(--color-charcoal)" }}
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  color: "var(--color-charcoal)",
+                }}
               >
                 <div>
-                  <h3 className="font-bold mb-2" style={{ color: "var(--color-burgundy)" }}>
+                  <h3
+                    className="font-bold mb-2"
+                    style={{ color: "var(--color-burgundy)" }}
+                  >
                     Minimum Booking
                   </h3>
-                  <p className="text-gray-700">2 hours minimum on weekends, 1 hour minimum on weekdays</p>
+                  <p className="text-gray-700">
+                    2 hours minimum on weekends, 1 hour minimum on weekdays
+                  </p>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2" style={{ color: "var(--color-burgundy)" }}>
+                  <h3
+                    className="font-bold mb-2"
+                    style={{ color: "var(--color-burgundy)" }}
+                  >
                     Deposit
                   </h3>
-                  <p className="text-gray-700">$50 deposit required to secure your reservation</p>
+                  <p className="text-gray-700">
+                    $50 deposit required to secure your reservation
+                  </p>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2" style={{ color: "var(--color-burgundy)" }}>
+                  <h3
+                    className="font-bold mb-2"
+                    style={{ color: "var(--color-burgundy)" }}
+                  >
                     Group Packages
                   </h3>
-                  <p className="text-gray-700">Special rates available for 4+ hour bookings</p>
+                  <p className="text-gray-700">
+                    Special rates available for 4+ hour bookings
+                  </p>
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2" style={{ color: "var(--color-burgundy)" }}>
+                  <h3
+                    className="font-bold mb-2"
+                    style={{ color: "var(--color-burgundy)" }}
+                  >
                     Holiday Pricing
                   </h3>
-                  <p className="text-gray-700">Premium rates apply on major holidays</p>
+                  <p className="text-gray-700">
+                    Premium rates apply on major holidays
+                  </p>
                 </div>
               </div>
             </div>

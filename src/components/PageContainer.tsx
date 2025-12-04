@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Nav from "./Nav";
 import HeadingBanner from "./HeadingBanner";
+import Footer from "./Footer";
 
 interface PageContainerProps {
   children: ReactNode;
@@ -16,7 +17,7 @@ export default function PageContainer({
   headingBackgroundImage,
 }: PageContainerProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-stone-50 to-red-50">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <Nav />
 
       {headingTitle && (
@@ -28,6 +29,8 @@ export default function PageContainer({
       )}
 
       {children}
+
+      <Footer />
     </div>
   );
 }

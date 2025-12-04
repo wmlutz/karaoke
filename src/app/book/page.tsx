@@ -21,14 +21,36 @@ export default function BookPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const rooms = [
-    { id: "washington", name: "The Washington", capacity: "4-6 people", price: "$40-50/hr" },
-    { id: "jefferson", name: "The Jefferson", capacity: "6-10 people", price: "$60-75/hr" },
-    { id: "franklin", name: "The Franklin", capacity: "10-15 people", price: "$80-100/hr" },
-    { id: "hamilton", name: "The Hamilton", capacity: "15-20 people", price: "$100-125/hr" },
+    {
+      id: "washington",
+      name: "The Washington",
+      capacity: "4-6 people",
+      price: "$40-50/hr",
+    },
+    {
+      id: "jefferson",
+      name: "The Jefferson",
+      capacity: "6-10 people",
+      price: "$60-75/hr",
+    },
+    {
+      id: "franklin",
+      name: "The Franklin",
+      capacity: "10-15 people",
+      price: "$80-100/hr",
+    },
+    {
+      id: "hamilton",
+      name: "The Hamilton",
+      capacity: "15-20 people",
+      price: "$100-125/hr",
+    },
   ];
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
     setBookingData({
       ...bookingData,
@@ -54,7 +76,6 @@ export default function BookPage() {
       >
         <main className="page-container">
           <div className="content-container">
-
             {!isSubmitted ? (
               <>
                 {/* Progress Steps */}
@@ -67,7 +88,8 @@ export default function BookPage() {
                             step >= num ? "scale-110" : ""
                           }`}
                           style={{
-                            backgroundColor: step >= num ? "#8C3A39" : "#D1D5DB",
+                            backgroundColor:
+                              step >= num ? "#8C3A39" : "#D1D5DB",
                             color: step >= num ? "#FDF9E3" : "#6B7280",
                             fontFamily: "var(--font-montserrat)",
                           }}
@@ -78,7 +100,8 @@ export default function BookPage() {
                           <div
                             className="w-16 h-1 mx-2"
                             style={{
-                              backgroundColor: step > num ? "#8C3A39" : "#D1D5DB",
+                              backgroundColor:
+                                step > num ? "#8C3A39" : "#D1D5DB",
                             }}
                           />
                         )}
@@ -123,7 +146,10 @@ export default function BookPage() {
                       <div>
                         <h2
                           className="text-3xl font-bold mb-6"
-                          style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                          style={{
+                            fontFamily: "var(--font-montserrat)",
+                            color: "#20394D",
+                          }}
                         >
                           Choose Your Room
                         </h2>
@@ -135,14 +161,28 @@ export default function BookPage() {
                                 bookingData.room === room.id ? "ring-4" : ""
                               }`}
                               style={{
-                                borderColor: bookingData.room === room.id ? "#8C3A39" : "#D1D5DB",
+                                borderColor:
+                                  bookingData.room === room.id
+                                    ? "#8C3A39"
+                                    : "#D1D5DB",
                                 ringColor: "#8C3A39",
-                                backgroundColor: bookingData.room === room.id ? "#FDF9E3" : "white",
+                                backgroundColor:
+                                  bookingData.room === room.id
+                                    ? "#FDF9E3"
+                                    : "white",
                               }}
-                              onClick={() => setBookingData({ ...bookingData, room: room.id })}
+                              onClick={() =>
+                                setBookingData({
+                                  ...bookingData,
+                                  room: room.id,
+                                })
+                              }
                             >
                               <Image
-                                src={`https://placehold.co/400x300/20394D/FDF9E3?text=${room.name.replace(" ", "+")}`}
+                                src={`https://placehold.co/400x300/20394D/FDF9E3?text=${room.name.replace(
+                                  " ",
+                                  "+"
+                                )}`}
                                 alt={room.name}
                                 width={400}
                                 height={300}
@@ -150,19 +190,28 @@ export default function BookPage() {
                               />
                               <h3
                                 className="text-xl font-bold mb-2"
-                                style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                                style={{
+                                  fontFamily: "var(--font-montserrat)",
+                                  color: "#20394D",
+                                }}
                               >
                                 {room.name}
                               </h3>
                               <p
                                 className="text-sm mb-1"
-                                style={{ fontFamily: "var(--font-raleway)", color: "#04724D" }}
+                                style={{
+                                  fontFamily: "var(--font-raleway)",
+                                  color: "#04724D",
+                                }}
                               >
                                 {room.capacity}
                               </p>
                               <p
                                 className="text-lg font-bold"
-                                style={{ fontFamily: "var(--font-montserrat)", color: "#8C3A39" }}
+                                style={{
+                                  fontFamily: "var(--font-montserrat)",
+                                  color: "#8C3A39",
+                                }}
                               >
                                 {room.price}
                               </p>
@@ -190,7 +239,10 @@ export default function BookPage() {
                       <div>
                         <h2
                           className="text-3xl font-bold mb-6"
-                          style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                          style={{
+                            fontFamily: "var(--font-montserrat)",
+                            color: "#20394D",
+                          }}
                         >
                           Select Date & Time
                         </h2>
@@ -198,7 +250,10 @@ export default function BookPage() {
                           <div>
                             <label
                               className="block mb-2 font-semibold"
-                              style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                              style={{
+                                fontFamily: "var(--font-raleway)",
+                                color: "#232323",
+                              }}
                             >
                               Date *
                             </label>
@@ -212,13 +267,18 @@ export default function BookPage() {
                               style={{
                                 fontFamily: "var(--font-raleway)",
                                 borderColor: "#04724D",
+                                colorScheme: "light",
+                                color: "#232323",
                               }}
                             />
                           </div>
                           <div>
                             <label
                               className="block mb-2 font-semibold"
-                              style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                              style={{
+                                fontFamily: "var(--font-raleway)",
+                                color: "#232323",
+                              }}
                             >
                               Start Time *
                             </label>
@@ -231,6 +291,8 @@ export default function BookPage() {
                               style={{
                                 fontFamily: "var(--font-raleway)",
                                 borderColor: "#04724D",
+                                colorScheme: "light",
+                                color: "#232323",
                               }}
                             >
                               <option value="">Select a time</option>
@@ -246,7 +308,10 @@ export default function BookPage() {
                           <div>
                             <label
                               className="block mb-2 font-semibold"
-                              style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                              style={{
+                                fontFamily: "var(--font-raleway)",
+                                color: "#232323",
+                              }}
                             >
                               Duration *
                             </label>
@@ -259,6 +324,8 @@ export default function BookPage() {
                               style={{
                                 fontFamily: "var(--font-raleway)",
                                 borderColor: "#04724D",
+                                colorScheme: "light",
+                                color: "#232323",
                               }}
                             >
                               <option value="">Select duration</option>
@@ -286,7 +353,11 @@ export default function BookPage() {
                           <button
                             type="button"
                             onClick={nextStep}
-                            disabled={!bookingData.date || !bookingData.time || !bookingData.duration}
+                            disabled={
+                              !bookingData.date ||
+                              !bookingData.time ||
+                              !bookingData.duration
+                            }
                             className="flex-1 px-8 py-4 rounded-lg font-bold transition-all hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                             style={{
                               fontFamily: "var(--font-montserrat)",
@@ -305,7 +376,10 @@ export default function BookPage() {
                       <div>
                         <h2
                           className="text-3xl font-bold mb-6"
-                          style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                          style={{
+                            fontFamily: "var(--font-montserrat)",
+                            color: "#20394D",
+                          }}
                         >
                           Your Information
                         </h2>
@@ -313,7 +387,10 @@ export default function BookPage() {
                           <div>
                             <label
                               className="block mb-2 font-semibold"
-                              style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                              style={{
+                                fontFamily: "var(--font-raleway)",
+                                color: "#232323",
+                              }}
                             >
                               Full Name *
                             </label>
@@ -327,13 +404,18 @@ export default function BookPage() {
                               style={{
                                 fontFamily: "var(--font-raleway)",
                                 borderColor: "#04724D",
+                                colorScheme: "light",
+                                color: "#232323",
                               }}
                             />
                           </div>
                           <div>
                             <label
                               className="block mb-2 font-semibold"
-                              style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                              style={{
+                                fontFamily: "var(--font-raleway)",
+                                color: "#232323",
+                              }}
                             >
                               Email *
                             </label>
@@ -347,13 +429,18 @@ export default function BookPage() {
                               style={{
                                 fontFamily: "var(--font-raleway)",
                                 borderColor: "#04724D",
+                                colorScheme: "light",
+                                color: "#232323",
                               }}
                             />
                           </div>
                           <div>
                             <label
                               className="block mb-2 font-semibold"
-                              style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                              style={{
+                                fontFamily: "var(--font-raleway)",
+                                color: "#232323",
+                              }}
                             >
                               Phone *
                             </label>
@@ -367,13 +454,18 @@ export default function BookPage() {
                               style={{
                                 fontFamily: "var(--font-raleway)",
                                 borderColor: "#04724D",
+                                colorScheme: "light",
+                                color: "#232323",
                               }}
                             />
                           </div>
                           <div>
                             <label
                               className="block mb-2 font-semibold"
-                              style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                              style={{
+                                fontFamily: "var(--font-raleway)",
+                                color: "#232323",
+                              }}
                             >
                               Special Requests (Optional)
                             </label>
@@ -386,8 +478,9 @@ export default function BookPage() {
                               style={{
                                 fontFamily: "var(--font-raleway)",
                                 borderColor: "#04724D",
+                                colorScheme: "light",
+                                color: "#232323",
                               }}
-                              placeholder="Any special requests or questions?"
                             />
                           </div>
                         </div>
@@ -397,9 +490,15 @@ export default function BookPage() {
                         >
                           <p
                             className="text-sm"
-                            style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                            style={{
+                              fontFamily: "var(--font-raleway)",
+                              color: "#232323",
+                            }}
                           >
-                            <strong style={{ color: "#8C3A39" }}>Note:</strong> A $50 deposit will be required to confirm your booking. We'll contact you within 24 hours to process payment and finalize your reservation.
+                            <strong style={{ color: "#8C3A39" }}>Note:</strong>{" "}
+                            A $50 deposit will be required to confirm your
+                            booking. We'll contact you within 24 hours to
+                            process payment and finalize your reservation.
                           </p>
                         </div>
                         <div className="flex gap-4">
@@ -434,23 +533,27 @@ export default function BookPage() {
               </>
             ) : (
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-12 shadow-lg text-center">
-                <div
-                  className="text-6xl mb-6"
-                  style={{ color: "#04724D" }}
-                >
+                <div className="text-6xl mb-6" style={{ color: "#04724D" }}>
                   ✓
                 </div>
                 <h2
                   className="text-4xl font-bold mb-4"
-                  style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                  style={{
+                    fontFamily: "var(--font-montserrat)",
+                    color: "#20394D",
+                  }}
                 >
                   Booking Request Received!
                 </h2>
                 <p
                   className="text-xl mb-6"
-                  style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                  style={{
+                    fontFamily: "var(--font-raleway)",
+                    color: "#232323",
+                  }}
                 >
-                  Thank you for your booking request. We'll contact you within 24 hours to confirm your reservation and process the deposit.
+                  Thank you for your booking request. We'll contact you within
+                  24 hours to confirm your reservation and process the deposit.
                 </p>
                 <div
                   className="p-6 rounded-xl mb-6"
@@ -458,20 +561,39 @@ export default function BookPage() {
                 >
                   <h3
                     className="font-bold text-lg mb-3"
-                    style={{ fontFamily: "var(--font-montserrat)", color: "#20394D" }}
+                    style={{
+                      fontFamily: "var(--font-montserrat)",
+                      color: "#20394D",
+                    }}
                   >
                     Booking Summary
                   </h3>
                   <div
                     className="text-left space-y-2"
-                    style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}
+                    style={{
+                      fontFamily: "var(--font-raleway)",
+                      color: "#232323",
+                    }}
                   >
-                    <p><strong>Room:</strong> {rooms.find(r => r.id === bookingData.room)?.name}</p>
-                    <p><strong>Date:</strong> {bookingData.date}</p>
-                    <p><strong>Time:</strong> {bookingData.time}</p>
-                    <p><strong>Duration:</strong> {bookingData.duration} hour(s)</p>
-                    <p><strong>Name:</strong> {bookingData.name}</p>
-                    <p><strong>Email:</strong> {bookingData.email}</p>
+                    <p>
+                      <strong>Room:</strong>{" "}
+                      {rooms.find((r) => r.id === bookingData.room)?.name}
+                    </p>
+                    <p>
+                      <strong>Date:</strong> {bookingData.date}
+                    </p>
+                    <p>
+                      <strong>Time:</strong> {bookingData.time}
+                    </p>
+                    <p>
+                      <strong>Duration:</strong> {bookingData.duration} hour(s)
+                    </p>
+                    <p>
+                      <strong>Name:</strong> {bookingData.name}
+                    </p>
+                    <p>
+                      <strong>Email:</strong> {bookingData.email}
+                    </p>
                   </div>
                 </div>
                 <a

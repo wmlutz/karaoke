@@ -36,7 +36,7 @@ export default function HeadingBanner({
           className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4"
           style={{
             fontFamily: "var(--font-montserrat)",
-            color: "var(--color-cream)",
+            color: "#ffffff",
           }}
         >
           {title}
@@ -46,7 +46,7 @@ export default function HeadingBanner({
             className="text-lg sm:text-xl max-w-3xl mx-auto px-4"
             style={{
               fontFamily: "var(--font-raleway)",
-              color: "var(--color-cream)",
+              color: "#ffffff",
               opacity: 0.9,
             }}
           >

@@ -16,34 +16,49 @@ export default function AboutPage() {
           <div className="content-container">
             {/* Story Section */}
             <section className="section-mb">
-              <div className="card">
-                <h2
-                  className="text-3xl font-bold mb-6"
-                  style={{
-                    fontFamily: "var(--font-montserrat)",
-                    color: "var(--color-burgundy)",
-                  }}
-                >
-                  Our Story
-                </h2>
+              <h2
+                className="text-4xl font-bold mb-8"
+                style={{
+                  fontFamily: "var(--font-montserrat)",
+                  color: "var(--color-burgundy)",
+                }}
+              >
+                Our Story
+              </h2>
+
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Team Photo */}
+                <div className="rounded-xl overflow-hidden">
+                  <Image
+                    src="/images/team-photo.png"
+                    alt="The Forefathers Karaoke Team"
+                    width={800}
+                    height={600}
+                    className="w-full h-auto"
+                  />
+                </div>
+
+                {/* Story Text */}
                 <div
                   className="text-lg text-gray-700 space-y-4"
                   style={{ fontFamily: "var(--font-raleway)" }}
                 >
                   <p>
-                    Forefathers Karaoke started in 2025 when four dads—armed
-                    with questionable vocal range and undeniable
-                    enthusiasm—finally got tired of driving all over New Jersey
+                    Forefathers Karaoke started in 2025 when four dads (
+                    <i>Get it? Four Fathers. Forefathers??? You get it.</i>),
+                    armed with questionable vocal range and undeniable
+                    enthusiasm, finally got tired of driving all over New Jersey
                     just to find a decent karaoke room. So we did what any group
                     of determined fathers would do: we built our own.
                   </p>
                   <p>
-                    We created Forefathers as a place where anyone can sing
-                    freely, laugh loudly, and make memories without judgment.
-                    It’s a simple mission—good rooms, great sound, and a space
-                    where friends, families, and coworkers can let loose. From
-                    birthday parties to team outings to spontaneous weeknight
-                    sessions, we’re here to make every visit unforgettable.
+                    We created Forefathers Karaoke as a place where anyone can
+                    sing freely, off or on tune, laugh loudly, and hang out
+                    without judgment. It's a simple mission: good rooms, great
+                    sound, and a space where friends, families, and coworkers
+                    can let loose. From birthday parties to team outings to
+                    spontaneous weeknight sessions, we're here to make every
+                    visit unforgettable.
                   </p>
                 </div>
               </div>
@@ -133,57 +148,53 @@ export default function AboutPage() {
         </main>
 
         {/* Values Section */}
-        <section className="section-full-width" style={{ paddingBottom: "var(--section-padding-y)" }}>
-              <h2
-                className="text-4xl font-bold mb-8 text-center"
-                style={{
-                  fontFamily: "var(--font-montserrat)",
-                  color: "var(--color-navy)",
-                }}
-              >
-                Forefathers Karaoke is All About
-              </h2>
-              <div className="grid sm:grid-cols-3 gap-6">
-                {[
-                  {
-                    title: "Life",
-                    description:
-                      "We believe life is simply more fun when you’re willing to sing like no one’s listening—even though your friends absolutely are, and they will remind you later. In your private room, you can celebrate, unwind, and live your best karaoke life without judgment (or long drives across Jersey).",
-                  },
-                  {
-                    title: "Liberty",
-                    description:
-                      "This is your space, your sound, your moment. Liberty means total freedom to unleash every high note, low note, and questionable note you’ve got. Whether you’re channeling Whitney or whispering Blink-182, you’re free to do it your way. Give us liberty, or give us louder speakers.",
-                  },
-                  {
-                    title: "The Pursuit of Killer Vocal Solos",
-                    description:
-                      "We’re here for the thrill of the perfect track, the dramatic duet, the shameless encore. Our top-tier sound, comfy rooms, and massive song selection are built to help you chase musical glory—even if your glory is mostly enthusiasm-based. Because happiness is pursuing killer tunes with people you love.",
-                  },
-                ].map((value, index) => (
-                  <div
-                    key={index}
-                    className="card text-center"
-                    style={{ borderTop: `4px solid var(--color-burgundy)` }}
-                  >
-                    <h3
-                      className="text-2xl font-bold mb-3"
-                      style={{
-                        fontFamily: "var(--font-montserrat)",
-                        color: "var(--color-navy)",
-                      }}
-                    >
-                      {value.title}
-                    </h3>
-                    <p
-                      className="text-gray-700"
-                      style={{ fontFamily: "var(--font-raleway)" }}
-                    >
-                      {value.description}
-                    </p>
-                  </div>
-                ))}
+        <section className="section-mb">
+          <h2
+            className="text-4xl font-bold mb-8 text-center"
+            style={{
+              fontFamily: "var(--font-montserrat)",
+              color: "var(--color-navy)",
+            }}
+          >
+            Forefathers Karaoke is All About
+          </h2>
+          <div className="grid sm:grid-cols-3 gap-6">
+            {[
+              {
+                title: "Life",
+                description:
+                  "We believe life is simply more fun when you’re willing to sing like no one’s listening—even though your friends absolutely are, and they will remind you later. In your private room, you can celebrate, unwind, and live your best karaoke life without judgment (or long drives across Jersey).",
+              },
+              {
+                title: "Liberty",
+                description:
+                  "This is your space, your sound, your moment. Liberty means total freedom to unleash every high note, low note, and questionable note you’ve got. Whether you’re channeling Whitney or whispering Blink-182, you’re free to do it your way. Give us liberty, or give us louder speakers.",
+              },
+              {
+                title: "The Pursuit of Killer Vocal Solos",
+                description:
+                  "We’re here for the thrill of the perfect track, the dramatic duet, the shameless encore. Our top-tier sound, comfy rooms, and massive song selection are built to help you chase musical glory—even if your glory is mostly enthusiasm-based. Because happiness is pursuing killer tunes with people you love.",
+              },
+            ].map((value, index) => (
+              <div key={index} className="text-center">
+                <h3
+                  className="text-2xl font-bold mb-3"
+                  style={{
+                    fontFamily: "var(--font-montserrat)",
+                    color: "var(--color-navy)",
+                  }}
+                >
+                  {value.title}
+                </h3>
+                <p
+                  className="text-gray-700"
+                  style={{ fontFamily: "var(--font-raleway)" }}
+                >
+                  {value.description}
+                </p>
               </div>
+            ))}
+          </div>
         </section>
       </PageContainer>
     </PasswordProtection>
