@@ -17,7 +17,7 @@ export default function PageContainer({
   headingBackgroundImage,
 }: PageContainerProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 via-white to-gray-100">
       <Nav />
 
       {headingTitle && (
