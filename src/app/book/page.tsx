@@ -19,6 +19,9 @@ export default function BookPage() {
     specialRequests: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [referenceNumber, setReferenceNumber] = useState<string | null>(null);
 
   const rooms = [
     {
@@ -58,11 +61,39 @@ export default function BookPage() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Add booking submission logic
-    console.log("Booking submitted:", bookingData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      // Call our secure API route instead of directly calling LibreBooking
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to create booking");
+      }
+
+      setReferenceNumber(data.referenceNumber);
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Booking error:", err);
+      setError(
+        err instanceof Error
+          ? err.message
+          : "An error occurred while processing your booking. Please try again or contact us directly."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const nextStep = () => setStep(step + 1);
@@ -140,6 +171,25 @@ export default function BookPage() {
                 </div>
 
                 <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg">
+                  {error && (
+                    <div
+                      className="mb-6 p-4 rounded-lg border-2"
+                      style={{
+                        backgroundColor: "#FEE2E2",
+                        borderColor: "#EF4444",
+                      }}
+                    >
+                      <p
+                        className="text-sm font-semibold"
+                        style={{
+                          fontFamily: "var(--font-raleway)",
+                          color: "#991B1B",
+                        }}
+                      >
+                        ⚠ {error}
+                      </p>
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit}>
                     {/* Step 1: Select Room */}
                     {step === 1 && (
@@ -515,14 +565,15 @@ export default function BookPage() {
                           </button>
                           <button
                             type="submit"
-                            className="flex-1 px-8 py-3.5 rounded-lg font-bold text-base md:text-lg transition-all hover:scale-105 shadow-lg"
+                            disabled={isSubmitting}
+                            className="flex-1 px-8 py-3.5 rounded-lg font-bold text-base md:text-lg transition-all hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                             style={{
                               fontFamily: "var(--font-montserrat)",
                               backgroundColor: "#04724D",
                               color: "#FDF9E3",
                             }}
                           >
-                            Submit Booking Request
+                            {isSubmitting ? "Submitting..." : "Submit Booking Request"}
                           </button>
                         </div>
                       </div>
@@ -574,6 +625,11 @@ export default function BookPage() {
                       color: "#232323",
                     }}
                   >
+                    {referenceNumber && (
+                      <p>
+                        <strong>Reference Number:</strong> {referenceNumber}
+                      </p>
+                    )}
                     <p>
                       <strong>Room:</strong>{" "}
                       {rooms.find((r) => r.id === bookingData.room)?.name}

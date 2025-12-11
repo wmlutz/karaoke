@@ -1,0 +1,70 @@
+Note: Unnecessary use of -X or --request, POST is already inferred.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Host sched.forefatherskaraoke.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 142.93.191.133
+*   Trying 142.93.191.133:443...
+* Connected to sched.forefatherskaraoke.com (142.93.191.133) port 443
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [333 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [41 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2876 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [520 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+* SSL connection using TLSv1.3 / AEAD-CHACHA20-POLY1305-SHA256 / [blank] / UNDEF
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=sched.forefatherskaraoke.com
+*  start date: Dec  8 21:31:17 2025 GMT
+*  expire date: Mar  8 21:31:16 2026 GMT
+*  subjectAltName: host "sched.forefatherskaraoke.com" matched cert's "sched.forefatherskaraoke.com"
+*  issuer: C=US; O=Let's Encrypt; CN=R12
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://sched.forefatherskaraoke.com/Web/Services/index.php/Authentication/Authenticate
+* [HTTP/2] [1] [:method: POST]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: sched.forefatherskaraoke.com]
+* [HTTP/2] [1] [:path: /Web/Services/index.php/Authentication/Authenticate]
+* [HTTP/2] [1] [user-agent: curl/8.6.0]
+* [HTTP/2] [1] [content-type: application/json]
+* [HTTP/2] [1] [accept: application/json]
+* [HTTP/2] [1] [content-length: 54]
+> POST /Web/Services/index.php/Authentication/Authenticate HTTP/2
+> Host: sched.forefatherskaraoke.com
+> User-Agent: curl/8.6.0
+> Content-Type: application/json
+> Accept: application/json
+> Content-Length: 54
+> 
+} [54 bytes data]
+< HTTP/2 200 
+< server: nginx/1.29.3
+< date: Thu, 11 Dec 2025 15:21:06 GMT
+< content-type: text/html; charset=UTF-8
+< content-length: 0
+< x-powered-by: PHP/8.4.1
+< set-cookie: PHPSESSID=5921ac0723ed30fee9fab9ab95ae2025; path=/Web
+< expires: Thu, 19 Nov 1981 08:52:00 GMT
+< cache-control: no-store, no-cache, must-revalidate
+< pragma: no-cache
+< access-control-allow-origin: *
+< access-control-allow-headers: origin, x-requested-with, content-type, x-booked-sessiontoken, x-booked-userid
+< access-control-allow-methods: PUT, GET, POST, DELETE, OPTIONS
+< strict-transport-security: max-age=31536000
+< 
+{ [0 bytes data]
+100    54    0     0  100    54      0    174 --:--:-- --:--:-- --:--:--   175
+* Connection #0 to host sched.forefatherskaraoke.com left intact
