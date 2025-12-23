@@ -121,6 +121,13 @@
   padding: 2rem var(--section-padding-x) var(--section-padding-y) 2rem;
 }
 
+.page-container-wide {
+  max-width: 100rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem var(--section-padding-x) var(--section-padding-y) 2rem;
+}
+
 .card {
   padding: var(--card-padding);
   border-radius: var(--radius-xl);

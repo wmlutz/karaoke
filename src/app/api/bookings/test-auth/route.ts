@@ -1,90 +1,100 @@
 import { NextResponse } from "next/server";
-
-// Test endpoint to verify LibreBooking API connectivity
-const LIBREBOOKING_API_BASE = "https://sched.forefatherskaraoke.com";
+import { createLibreBookingClient } from "@/lib/librebooking-client";
 
 export async function GET() {
   const results = {
-    baseUrl: LIBREBOOKING_API_BASE,
+    timestamp: new Date().toISOString(),
+    baseUrl: process.env.LIBREBOOKING_API_BASE,
     username: process.env.LIBREBOOKING_USERNAME,
     hasPassword: !!process.env.LIBREBOOKING_PASSWORD,
-    tests: [] as any[],
+    tests: {
+      authentication: null as any,
+      resources: null as any,
+      schedules: null as any,
+    },
   };
 
-  // Test different possible endpoints
-  const endpoints = [
-    "/Web/Services/index.php/Authentication/Authenticate",
-    "/Web/Services/Authentication/Authenticate",
-    "/Services/index.php/Authentication/Authenticate",
-    "/Web/Services/index.php",
-    "/Web/Services/",
-    "/api.php/Authentication/Authenticate",
-    "/Web/api.php/Authentication/Authenticate",
-  ];
+  try {
+    // Test 1: Authentication
+    console.log("Testing authentication...");
+    const scheduler = createLibreBookingClient();
 
-  for (const endpoint of endpoints) {
-    const url = `${LIBREBOOKING_API_BASE}${endpoint}`;
-
-    // Try POST first
     try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({
-          username: process.env.LIBREBOOKING_USERNAME,
-          password: process.env.LIBREBOOKING_PASSWORD,
-        }),
-      });
+      const authResult = await scheduler.authenticate();
+      results.tests.authentication = {
+        success: true,
+        isAuthenticated: authResult.isAuthenticated,
+        userId: authResult.userId,
+        hasSessionToken: !!authResult.sessionToken,
+        sessionExpires: authResult.sessionExpires,
+      };
+      console.log("Authentication successful:", authResult);
 
-      const text = await response.text();
+      // Test 2: List Resources
+      console.log("Testing resources.list()...");
+      try {
+        const resourcesResult = await scheduler.resources.list();
+        results.tests.resources = {
+          success: true,
+          count: resourcesResult.resources?.length || 0,
+          resources: resourcesResult.resources?.map((r) => ({
+            id: r.resourceId,
+            name: r.name,
+            scheduleId: r.scheduleId,
+            requiresApproval: r.requiresApproval,
+          })),
+        };
+        console.log(`Found ${resourcesResult.resources?.length || 0} resources`);
+      } catch (error) {
+        results.tests.resources = {
+          success: false,
+          error: error instanceof Error ? error.message : "Unknown error",
+        };
+        console.error("Resources test failed:", error);
+      }
 
-      results.tests.push({
-        endpoint,
-        method: "POST",
-        status: response.status,
-        statusText: response.statusText,
-        contentType: response.headers.get("content-type"),
-        contentLength: response.headers.get("content-length"),
-        bodyPreview: text.substring(0, 500), // Increased to see more of the HTML
-        bodyLength: text.length,
-        fullBody: text, // Include full response to see what LibreBooking is actually returning
-        hasJson: text.length > 0 && (text.trim().startsWith("{") || text.trim().startsWith("[")),
-      });
-    } catch (error) {
-      results.tests.push({
-        endpoint,
-        method: "POST",
-        error: error instanceof Error ? error.message : "Unknown error",
-      });
+      // Test 3: List Schedules
+      console.log("Testing schedules.list()...");
+      try {
+        const schedulesResult = await scheduler.schedules.list();
+        results.tests.schedules = {
+          success: true,
+          count: schedulesResult.schedules?.length || 0,
+          schedules: schedulesResult.schedules?.map((s) => ({
+            id: s.scheduleId,
+            name: s.name,
+            isDefault: s.isDefault,
+            timezone: s.timezone,
+          })),
+        };
+        console.log(`Found ${schedulesResult.schedules?.length || 0} schedules`);
+      } catch (error) {
+        results.tests.schedules = {
+          success: false,
+          error: error instanceof Error ? error.message : "Unknown error",
+        };
+        console.error("Schedules test failed:", error);
+      }
+
+      // Clean up
+      await scheduler.signOut();
+      console.log("Signed out successfully");
+    } catch (authError) {
+      results.tests.authentication = {
+        success: false,
+        error:
+          authError instanceof Error ? authError.message : "Unknown error",
+      };
+      console.error("Authentication failed:", authError);
     }
-
-    // Also try GET to see what the endpoint returns
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Accept": "application/json",
-        },
-      });
-
-      const text = await response.text();
-
-      results.tests.push({
-        endpoint,
-        method: "GET",
-        status: response.status,
-        statusText: response.statusText,
-        contentType: response.headers.get("content-type"),
-        bodyPreview: text.substring(0, 300),
-        bodyLength: text.length,
-        hasJson: text.length > 0 && (text.trim().startsWith("{") || text.trim().startsWith("[")),
-      });
-    } catch (error) {
-      // Skip GET errors
-    }
+  } catch (error) {
+    return NextResponse.json(
+      {
+        error: "Test suite failed to initialize",
+        message: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json(results, { status: 200 });
