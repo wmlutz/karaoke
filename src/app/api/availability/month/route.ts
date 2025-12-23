@@ -90,14 +90,20 @@ export async function GET(request: NextRequest) {
     const apiEndDate = formatDate(endDate);
 
     // Fetch availability data from LibreBooking
+    console.log("Creating LibreBooking client for availability check...");
     const scheduler = createLibreBookingClient();
 
     try {
+      console.log("Checking availability:", { apiStartDate, apiEndDate });
       // Use the client's availability method to get dates with available slots
       const datesWithAvailability = await scheduler.availability.check(
         apiStartDate,
         apiEndDate
       );
+      console.log("Availability check complete:", {
+        datesCount: datesWithAvailability.size,
+        dates: Array.from(datesWithAvailability).slice(0, 5)
+      });
 
       // Build the availability array
       const availability: DayAvailability[] = dateArray.map((date) => {
@@ -135,7 +141,11 @@ export async function GET(request: NextRequest) {
         availability,
       });
     } catch (apiError) {
-      console.error("LibreBooking API error:", apiError);
+      console.error("LibreBooking API error - Full details:", {
+        error: apiError instanceof Error ? apiError.message : String(apiError),
+        stack: apiError instanceof Error ? apiError.stack : undefined,
+        timestamp: new Date().toISOString(),
+      });
 
       // If API fails, return basic unavailability data
       const availability: DayAvailability[] = dateArray.map((date) => ({

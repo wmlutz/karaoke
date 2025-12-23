@@ -613,9 +613,22 @@ export function createLibreBookingClient(): LibreBookingClient {
   const username = process.env.LIBREBOOKING_USERNAME;
   const password = process.env.LIBREBOOKING_PASSWORD;
 
+  console.log("LibreBooking environment check:", {
+    hasBaseUrl: !!baseUrl,
+    hasUsername: !!username,
+    hasPassword: !!password,
+    baseUrl: baseUrl ? `${baseUrl.substring(0, 20)}...` : "MISSING",
+  });
+
   if (!baseUrl || !username || !password) {
+    const missing = [];
+    if (!baseUrl) missing.push("LIBREBOOKING_API_BASE");
+    if (!username) missing.push("LIBREBOOKING_USERNAME");
+    if (!password) missing.push("LIBREBOOKING_PASSWORD");
+
+    console.error("Missing environment variables:", missing);
     throw new Error(
-      "Missing required environment variables: LIBREBOOKING_API_BASE, LIBREBOOKING_USERNAME, LIBREBOOKING_PASSWORD"
+      `Missing required environment variables: ${missing.join(", ")}`
     );
   }
 
