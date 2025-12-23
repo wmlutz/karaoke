@@ -2,9 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { createLibreBookingClient } from "@/lib/librebooking-client";
 
 export async function POST(request: NextRequest) {
+  let date, startTime, resourceId, duration, partySize, notes;
+
   try {
     const body = await request.json();
-    const { date, startTime, resourceId, duration, partySize, notes } = body;
+    ({ date, startTime, resourceId, duration, partySize, notes } = body);
 
     // Validate required fields
     if (!date || !startTime || !resourceId || !duration) {
