@@ -21,17 +21,57 @@ export default function DateBooking() {
   const [resources, setResources] = useState<Resource[]>([]);
   const [, setIsLoadingResources] = useState(false);
 
+  // Customer information
+  const [customerName, setCustomerName] = useState("");
+  const [customerEmail, setCustomerEmail] = useState("");
+  const [customerPhone, setCustomerPhone] = useState("");
+  const [notes, setNotes] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [customerInfoConfirmed, setCustomerInfoConfirmed] = useState(false);
+
   // Booking submission state
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingMessage, setBookingMessage] = useState<string | null>(null);
   const [bookingError, setBookingError] = useState<string | null>(null);
-  const [notes, setNotes] = useState("");
+  const [countdown, setCountdown] = useState<number | null>(null);
 
   // Reset selections when date changes
   useEffect(() => {
     setSelectedTimeSlot(null);
     setSelectedResource(null);
   }, [selectedDate]);
+
+  // Countdown timer for successful booking
+  useEffect(() => {
+    if (countdown === null) return;
+
+    if (countdown === 0) {
+      // Reset entire form
+      setSelectedDate(null);
+      setSessionDuration("");
+      setPartySize("");
+      setSelectedTimeSlot(null);
+      setSelectedResource(null);
+      setCustomerName("");
+      setCustomerEmail("");
+      setCustomerPhone("");
+      setNotes("");
+      setEmailError("");
+      setPhoneError("");
+      setCustomerInfoConfirmed(false);
+      setBookingMessage(null);
+      setBookingError(null);
+      setCountdown(null);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown(countdown - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [countdown]);
 
   // Fetch resources on mount
   useEffect(() => {
@@ -312,16 +352,35 @@ export default function DateBooking() {
     ? filteredSlots.filter((slot) => slot.startTime === selectedTimeSlot)
     : [];
 
+  // Email validation
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  // Phone validation (optional, but if provided must be valid)
+  const validatePhone = (phone: string): boolean => {
+    if (!phone) return true; // Optional field
+    // Accept formats: (123) 456-7890, 123-456-7890, 1234567890, +1 123 456 7890
+    const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+  };
+
   // Determine current step automatically
   const step1Complete = selectedDate && sessionDuration && partySize;
   const step2Complete = step1Complete && selectedTimeSlot && selectedResource;
+  const step3Complete = step2Complete && customerName && customerEmail && validateEmail(customerEmail) && validatePhone(customerPhone) && customerInfoConfirmed;
 
-  const effectiveStep: 1 | 2 | 3 = step2Complete ? 3 : step1Complete ? 2 : 1;
+  const effectiveStep: 1 | 2 | 3 | 4 = step3Complete ? 4 : step2Complete ? 3 : step1Complete ? 2 : 1;
 
   const handleBackClick = () => {
-    if (effectiveStep === 3) {
+    if (effectiveStep === 4) {
+      // Go back to step 3 - unconfirm customer info
+      setCustomerInfoConfirmed(false);
+    } else if (effectiveStep === 3) {
       // Go back to step 2 - clear room selection
       setSelectedResource(null);
+      setCustomerInfoConfirmed(false);
     } else if (effectiveStep === 2) {
       // Go back to step 1 - clear date and details
       setSelectedDate(null);
@@ -330,6 +389,40 @@ export default function DateBooking() {
       setSelectedTimeSlot(null);
       setSelectedResource(null);
     }
+  };
+
+  const handleContinueToConfirmation = () => {
+    let hasError = false;
+
+    // Validate email
+    if (!customerEmail) {
+      setEmailError("Email is required");
+      hasError = true;
+    } else if (!validateEmail(customerEmail)) {
+      setEmailError("Please enter a valid email address");
+      hasError = true;
+    } else {
+      setEmailError("");
+    }
+
+    // Validate phone (optional)
+    if (customerPhone && !validatePhone(customerPhone)) {
+      setPhoneError("Please enter a valid phone number");
+      hasError = true;
+    } else {
+      setPhoneError("");
+    }
+
+    // Validate name
+    if (!customerName) {
+      hasError = true;
+    }
+
+    if (!hasError) {
+      setCustomerInfoConfirmed(true);
+    }
+
+    return !hasError;
   };
 
   const handleConfirmBooking = async () => {
@@ -367,6 +460,7 @@ export default function DateBooking() {
 
       if (response.ok) {
         setBookingMessage(data.message || "Booking confirmed successfully!");
+        setCountdown(10); // Start 10-second countdown
       } else {
         setBookingError(data.message || data.error || "Failed to create booking");
       }
@@ -459,25 +553,56 @@ export default function DateBooking() {
 
             {/* Step 3 */}
             <button
+              onClick={() => {
+                if (step2Complete) {
+                  setCustomerInfoConfirmed(false);
+                }
+              }}
               disabled={!step2Complete}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all disabled:cursor-not-allowed ${
-                effectiveStep === 3 ? 'shadow-md' : 'opacity-60'
+                effectiveStep === 3 ? 'shadow-md' : 'opacity-60 hover:opacity-80'
               }`}
               style={{
                 fontFamily: "var(--font-montserrat)",
-                backgroundColor: effectiveStep === 3 ? "#04724D" : "#E5E7EB",
-                color: effectiveStep === 3 ? "#FFFFFF" : "#6B7280",
+                backgroundColor: effectiveStep === 3 ? "#04724D" : step3Complete ? "#D1FAE5" : "#E5E7EB",
+                color: effectiveStep === 3 ? "#FFFFFF" : step3Complete ? "#047857" : "#6B7280",
               }}
             >
               <span className="flex items-center justify-center w-6 h-6 rounded-full text-sm font-bold"
                 style={{
-                  backgroundColor: effectiveStep === 3 ? "#FFFFFF" : "transparent",
-                  color: effectiveStep === 3 ? "#04724D" : "inherit",
+                  backgroundColor: effectiveStep === 3 ? "#FFFFFF" : step3Complete ? "#047857" : "transparent",
+                  color: effectiveStep === 3 ? "#04724D" : step3Complete ? "#FFFFFF" : "inherit",
                 }}
               >
                 3
               </span>
-              <span className="hidden sm:inline font-semibold">Confirmation</span>
+              <span className="hidden sm:inline font-semibold">Your Info</span>
+            </button>
+
+            {/* Separator */}
+            <div className="h-0.5 w-4 sm:w-8" style={{ backgroundColor: step3Complete ? "#047857" : "#D1D5DB" }} />
+
+            {/* Step 4 */}
+            <button
+              disabled={!step3Complete}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all disabled:cursor-not-allowed ${
+                effectiveStep === 4 ? 'shadow-md' : 'opacity-60'
+              }`}
+              style={{
+                fontFamily: "var(--font-montserrat)",
+                backgroundColor: effectiveStep === 4 ? "#04724D" : "#E5E7EB",
+                color: effectiveStep === 4 ? "#FFFFFF" : "#6B7280",
+              }}
+            >
+              <span className="flex items-center justify-center w-6 h-6 rounded-full text-sm font-bold"
+                style={{
+                  backgroundColor: effectiveStep === 4 ? "#FFFFFF" : "transparent",
+                  color: effectiveStep === 4 ? "#04724D" : "inherit",
+                }}
+              >
+                4
+              </span>
+              <span className="hidden sm:inline font-semibold">Confirm</span>
             </button>
           </div>
 
@@ -851,8 +976,205 @@ export default function DateBooking() {
         </div>
       )}
 
-      {/* Step 3: Confirmation */}
+      {/* Step 3: Customer Information */}
       {effectiveStep === 3 && (
+        <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg">
+          <h3 className="text-xl font-bold mb-6" style={{
+            fontFamily: "var(--font-montserrat)",
+            color: "#20394D",
+          }}>
+            Your Information
+          </h3>
+
+          <div className="space-y-4 mb-6">
+            {/* Name Field */}
+            <div>
+              <label
+                htmlFor="customer-name"
+                className="block mb-2 font-semibold text-sm"
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  color: "#20394D",
+                }}
+              >
+                Full Name *
+              </label>
+              <input
+                id="customer-name"
+                type="text"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+                placeholder="Enter your full name"
+                className="w-full px-3 py-2 rounded-lg border-2 focus:outline-none text-sm"
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  borderColor: "#04724D",
+                  color: "#232323",
+                }}
+              />
+            </div>
+
+            {/* Email Field */}
+            <div>
+              <label
+                htmlFor="customer-email"
+                className="block mb-2 font-semibold text-sm"
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  color: "#20394D",
+                }}
+              >
+                Email Address *
+              </label>
+              <input
+                id="customer-email"
+                type="email"
+                value={customerEmail}
+                onChange={(e) => {
+                  setCustomerEmail(e.target.value);
+                  if (emailError) setEmailError("");
+                }}
+                onBlur={() => {
+                  if (customerEmail && !validateEmail(customerEmail)) {
+                    setEmailError("Please enter a valid email address");
+                  }
+                }}
+                placeholder="your.email@example.com"
+                className="w-full px-3 py-2 rounded-lg border-2 focus:outline-none text-sm"
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  borderColor: emailError ? "#DC2626" : "#04724D",
+                  color: "#232323",
+                }}
+              />
+              {emailError && (
+                <p className="mt-1 text-xs" style={{ color: "#DC2626", fontFamily: "var(--font-raleway)" }}>
+                  {emailError}
+                </p>
+              )}
+            </div>
+
+            {/* Phone Field */}
+            <div>
+              <label
+                htmlFor="customer-phone"
+                className="block mb-2 font-semibold text-sm"
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  color: "#20394D",
+                }}
+              >
+                Phone Number (Optional)
+              </label>
+              <input
+                id="customer-phone"
+                type="tel"
+                value={customerPhone}
+                onChange={(e) => {
+                  // Remove all non-numeric characters
+                  const numericOnly = e.target.value.replace(/\D/g, '');
+
+                  // Format as (XXX) XXX-XXXX
+                  let formatted = '';
+                  if (numericOnly.length > 0) {
+                    formatted = '(' + numericOnly.substring(0, 3);
+                    if (numericOnly.length > 3) {
+                      formatted += ') ' + numericOnly.substring(3, 6);
+                      if (numericOnly.length > 6) {
+                        formatted += '-' + numericOnly.substring(6, 10);
+                      }
+                    }
+                  }
+
+                  setCustomerPhone(formatted);
+                  if (phoneError) setPhoneError("");
+                }}
+                onBlur={() => {
+                  if (customerPhone && !validatePhone(customerPhone)) {
+                    setPhoneError("Please enter a valid phone number");
+                  }
+                }}
+                placeholder="(123) 456-7890"
+                maxLength={14}
+                className="w-full px-3 py-2 rounded-lg border-2 focus:outline-none text-sm"
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  borderColor: phoneError ? "#DC2626" : "#04724D",
+                  color: "#232323",
+                }}
+              />
+              {phoneError && (
+                <p className="mt-1 text-xs" style={{ color: "#DC2626", fontFamily: "var(--font-raleway)" }}>
+                  {phoneError}
+                </p>
+              )}
+            </div>
+
+            {/* Notes Field */}
+            <div>
+              <label
+                htmlFor="booking-notes"
+                className="block mb-2 font-semibold text-sm"
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  color: "#20394D",
+                }}
+              >
+                Special Requests or Notes
+              </label>
+              <p className="text-xs mb-2" style={{ fontFamily: "var(--font-raleway)", color: "#6B7280" }}>
+                Is this for a special occasion like a birthday? Let us know anything that would help us prepare for your visit!
+              </p>
+              <textarea
+                id="booking-notes"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+                rows={4}
+                placeholder="Optional: Tell us about any special requests..."
+                className="w-full px-3 py-2 rounded-lg border-2 focus:outline-none text-sm resize-none"
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  borderColor: "#04724D",
+                  color: "#232323",
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <button
+              onClick={handleBackClick}
+              className="flex-1 px-6 py-3 rounded-lg font-bold transition-all hover:scale-105"
+              style={{
+                fontFamily: "var(--font-montserrat)",
+                backgroundColor: "#E5E7EB",
+                color: "#232323",
+              }}
+            >
+              Back
+            </button>
+            <button
+              onClick={() => {
+                if (handleContinueToConfirmation()) {
+                  // Validation passed, step will auto-advance
+                }
+              }}
+              disabled={!customerName || !customerEmail}
+              className="flex-1 px-6 py-3 rounded-lg font-bold transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{
+                fontFamily: "var(--font-montserrat)",
+                backgroundColor: "#04724D",
+                color: "#FFFFFF",
+              }}
+            >
+              Continue
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Step 4: Confirmation */}
+      {effectiveStep === 4 && (
         <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-4 sm:p-6 shadow-lg">
           <h3 className="text-xl font-bold mb-6" style={{
             fontFamily: "var(--font-montserrat)",
@@ -867,6 +1189,11 @@ export default function DateBooking() {
               <p style={{ fontFamily: "var(--font-raleway)", color: "#047857", fontWeight: "600" }}>
                 {bookingMessage}
               </p>
+              {countdown !== null && (
+                <p className="mt-2 text-sm" style={{ fontFamily: "var(--font-raleway)", color: "#047857" }}>
+                  Returning to booking form in {countdown} second{countdown !== 1 ? 's' : ''}...
+                </p>
+              )}
             </div>
           )}
 
@@ -881,64 +1208,48 @@ export default function DateBooking() {
           <div className="space-y-4 mb-6">
             <div className="p-4 rounded-lg" style={{ backgroundColor: "#FDF9E3" }}>
               <h4 className="font-semibold mb-2" style={{ fontFamily: "var(--font-raleway)", color: "#20394D" }}>
-                Date & Time
+                Booking Details
               </h4>
               <p style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}>
-                {selectedDate?.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
+                <strong>Date & Time:</strong> {selectedDate?.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
                 {" at "}
                 {selectedTimeSlot && formatTime(selectedTimeSlot)}
-              </p>
-            </div>
-
-            <div className="p-4 rounded-lg" style={{ backgroundColor: "#FDF9E3" }}>
-              <h4 className="font-semibold mb-2" style={{ fontFamily: "var(--font-raleway)", color: "#20394D" }}>
-                Room
-              </h4>
-              <p style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}>
-                {availableResourcesForTime.find(slot => slot.resourceId === selectedResource)?.resourceName}
-              </p>
-            </div>
-
-            <div className="p-4 rounded-lg" style={{ backgroundColor: "#FDF9E3" }}>
-              <h4 className="font-semibold mb-2" style={{ fontFamily: "var(--font-raleway)", color: "#20394D" }}>
-                Details
-              </h4>
-              <p style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}>
-                Duration: {sessionDuration} {parseInt(sessionDuration) === 1 ? 'hour' : 'hours'}
                 <br />
-                Party Size: {partySize} people
+                <strong>Room:</strong> {availableResourcesForTime.find(slot => slot.resourceId === selectedResource)?.resourceName}
+                <br />
+                <strong>Duration:</strong> {sessionDuration} {parseInt(sessionDuration) === 1 ? 'hour' : 'hours'}
+                <br />
+                <strong>Party Size:</strong> {partySize} people
               </p>
             </div>
-          </div>
 
-          {/* Notes Field */}
-          <div className="mb-6">
-            <label
-              htmlFor="booking-notes"
-              className="block mb-2 font-semibold text-sm"
-              style={{
-                fontFamily: "var(--font-raleway)",
-                color: "#20394D",
-              }}
-            >
-              Special Requests or Notes
-            </label>
-            <p className="text-xs mb-2" style={{ fontFamily: "var(--font-raleway)", color: "#6B7280" }}>
-              Is this for a special occasion like a birthday? Let us know anything that would help us prepare for your visit!
-            </p>
-            <textarea
-              id="booking-notes"
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-              rows={4}
-              placeholder="Optional: Tell us about any special requests..."
-              className="w-full px-3 py-2 rounded-lg border-2 focus:outline-none text-sm resize-none"
-              style={{
-                fontFamily: "var(--font-raleway)",
-                borderColor: "#04724D",
-                color: "#232323",
-              }}
-            />
+            <div className="p-4 rounded-lg" style={{ backgroundColor: "#FDF9E3" }}>
+              <h4 className="font-semibold mb-2" style={{ fontFamily: "var(--font-raleway)", color: "#20394D" }}>
+                Contact Information
+              </h4>
+              <p style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}>
+                Name: {customerName}
+                <br />
+                Email: {customerEmail}
+                {customerPhone && (
+                  <>
+                    <br />
+                    Phone: {customerPhone}
+                  </>
+                )}
+              </p>
+            </div>
+
+            {notes && (
+              <div className="p-4 rounded-lg" style={{ backgroundColor: "#FDF9E3" }}>
+                <h4 className="font-semibold mb-2" style={{ fontFamily: "var(--font-raleway)", color: "#20394D" }}>
+                  Special Requests
+                </h4>
+                <p style={{ fontFamily: "var(--font-raleway)", color: "#232323" }}>
+                  {notes}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="flex gap-4">
