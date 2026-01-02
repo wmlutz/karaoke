@@ -17,7 +17,6 @@ export default function LandingPage() {
       setSubmitError("Email address is required");
       return;
     }
-
     setIsSubmitting(true);
     setSubmitError(null);
     setSubmitMessage(null);
@@ -193,6 +192,8 @@ export default function LandingPage() {
                 fontFamily: "var(--font-montserrat)",
                 letterSpacing: "0.05em",
               }}
+              data-umami-event="Notification Signup"
+              data-umami-event-email={email || "Error, no email"}
             >
               {isSubmitting ? "ENLISTING..." : "ENLIST ME!"}
             </button>

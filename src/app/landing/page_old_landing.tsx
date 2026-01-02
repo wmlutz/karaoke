@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { submitEmail } from "./actions";
 import PasswordProtection from "@/components/PasswordProtection";
+import { submitEmail } from "../actions";
 
 export default function Home() {
   const [email, setEmail] = useState("");
