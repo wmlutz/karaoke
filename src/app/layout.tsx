@@ -55,11 +55,13 @@ export default function RootLayout({
         className={`${montserrat.variable} ${raleway.variable} antialiased`}
         style={{ fontFamily: "var(--font-montserrat)" }}
       >
-        <Script
-          defer
-          src="https://cloud.umami.is/script.js"
-          data-website-id="d7255fe1-b4d2-419d-87cf-88b1a00e88ed"
-        />
+        {process.env.NODE_ENV === "production" && (
+          <Script
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id="d7255fe1-b4d2-419d-87cf-88b1a00e88ed"
+          />
+        )}
         {children}
       </body>
     </html>

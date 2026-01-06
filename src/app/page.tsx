@@ -52,7 +52,7 @@ export default function LandingPage() {
 
   return (
     <div
-      className="h-screen flex flex-col items-center justify-center px-4 py-6 overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center px-4 py-6"
       style={{
         backgroundColor: "#20394D",
         fontFamily: "var(--font-raleway)",
